@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Кнопки по кругу</title>
+    <style>
+        .button-container {
+            width: 100px;
+            margin: 20px;
+        }
+        .button-container button {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="button-container">
+    <button>1</button>
+    <button>2</button>
+    <button>3</button>
+</div>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+$(function () {
+    // Делегируем обработку клика на сам контейнер
+    $('.button-container').on('click', 'button', function () {
+        const container = $('.button-container');
+
+        // Получаем все кнопки
+        const buttons = container.children('button').toArray();
+
+        // Сдвигаем первую кнопку в конец
+        buttons.push(buttons.shift());
+
+        // Переустанавливаем порядок
+        container.empty().append(buttons);
+    });
+});
+</script>
+
+</body>
+</html>
